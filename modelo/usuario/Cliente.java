@@ -50,13 +50,6 @@ public class Cliente {
 
 
     // Metodos
-    public void registrarse(String nombre, String usuario, String password, String datos) {
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.password = password;
-        // Procesar datos adicionales
-    }
-
     public boolean iniciarSesion(String usuario, String password) {
         return this.usuario.equals(usuario) && this.password.equals(password);
     }
@@ -71,7 +64,7 @@ public class Cliente {
         this.telefono = nuevoTelefono;
     }
 
-    public void eliminarCuenta(List<Cliente> clientes) {
+    public void eliminarCuenta(ArrayList<Cliente> clientes) {
         // Implementar lógica para eliminar cuenta
         clientes.remove(this);
     }
@@ -160,9 +153,9 @@ public class Cliente {
     public void agregarMetodoPago(int idPago, int idPedido) {
         for (Pedido p : pedidos) {
             if (p.getId() == idPedido) {
-                for (Direccion d : direcciones) {
-                    if (d.getId() == idPago) {
-                        p.setDireccion(d);
+                for (Pago curPago : metodosPago) {
+                    if (curPago.getId() == idPago) {
+                        p.setMetodoPago(curPago);
                         break;
                     }
                 }

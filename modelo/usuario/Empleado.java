@@ -7,7 +7,6 @@ import modelo.producto.Etiqueta;
 import modelo.producto.Producto;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Empleado {
     private int id;
@@ -45,29 +44,30 @@ public class Empleado {
         System.out.println("Sesion cerrada para " + usuario);
     }
 
-    public List<Producto> consultarProductosCatalogo(List<Producto> catalogo) {
+    public ArrayList<Producto> consultarProductosCatalogo(ArrayList<Producto> catalogo) {
         return new ArrayList<>(catalogo);
     }
 
-    public void agregarProductoCatalogo(Producto producto, List<Producto> catalogo) {
+    public void agregarProductoCatalogo(Producto producto, ArrayList<Producto> catalogo) {
         catalogo.add(producto);
     }
 
-    public void eliminarProductoCatalogo(int idProducto, List<Producto> catalogo) {
+    public void eliminarProductoCatalogo(int idProducto, ArrayList<Producto> catalogo) {
         catalogo.removeIf(p -> p.getId() == idProducto);
     }
 
-    public void editarProductoCatalogo(int idProducto, List<Producto> catalogo, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio) {
+    public void editarProductoCatalogo(int idProducto, ArrayList<Producto> catalogo, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevoInventario) {
         for (Producto p : catalogo) {
             if (p.getId() == idProducto) {
                 p.setNombre(nuevoNombre);
                 p.setDescripcion(nuevaDescripcion);
                 p.setPrecio(nuevoPrecio);
+                p.actualizarInventario(nuevoInventario);
             }
         }
     }
 
-    public void agregarEtiquetaProducto(int idProducto, Etiqueta etiqueta, List<Producto> catalogo) {
+    public void agregarEtiquetaProducto(int idProducto, Etiqueta etiqueta, ArrayList<Producto> catalogo) {
         for (Producto p : catalogo) {
             if (p.getId() == idProducto) {
                 p.agregarEtiqueta(etiqueta);
@@ -75,7 +75,7 @@ public class Empleado {
         }
     }
 
-    public void eliminarEtiquetaProducto(int idProducto, Etiqueta etiqueta, List<Producto> catalogo) {
+    public void eliminarEtiquetaProducto(int idProducto, Etiqueta etiqueta, ArrayList<Producto> catalogo) {
         for (Producto p : catalogo) {
             if (p.getId() == idProducto) {
                 p.eliminarEtiqueta(etiqueta);
@@ -92,7 +92,7 @@ public class Empleado {
         return -1;
     }
 
-    public void registrarEntradaInventario(int idProducto, int cantidad, List<Producto> catalogo) {
+    public void registrarEntradaInventario(int idProducto, int cantidad, ArrayList<Producto> catalogo) {
         for (Producto p : catalogo) {
             if (p.getId() == idProducto) {
                 p.actualizarInventario(p.getInventario() + cantidad);
@@ -100,8 +100,8 @@ public class Empleado {
         }
     }
 
-    public List<Producto> recibirAlertasInventarioBajo(List<Producto> catalogo) {
-        List<Producto> alertas = new ArrayList<>();
+    public ArrayList<Producto> recibirAlertasInventarioBajo(ArrayList<Producto> catalogo) {
+        ArrayList<Producto> alertas = new ArrayList<>();
         for (Producto p : catalogo) {
             if (p.getInventario() < 5) {
                 alertas.add(p);
@@ -110,7 +110,7 @@ public class Empleado {
         return alertas;
     }
 
-    public void actualizarEstadoPedido(int idPedido, String nuevoEstado, List<Pedido> pedidos) {
+    public void actualizarEstadoPedido(int idPedido, String nuevoEstado, ArrayList<Pedido> pedidos) {
         for (Pedido p : pedidos) {
             if (p.getId() == idPedido) {
                 p.setEstado(nuevoEstado);
@@ -118,7 +118,7 @@ public class Empleado {
         }
     }
 
-    public void cancelarPedido(int idPedido, List<Pedido> pedidos) {
+    public void cancelarPedido(int idPedido, ArrayList<Pedido> pedidos) {
         for (Pedido p : pedidos) {
             if (p.getId() == idPedido) {
                 p.setEstado("Cancelado");
@@ -126,8 +126,8 @@ public class Empleado {
         }
     }
 
-    public List<Pedido> verPedidosPendientes(List<Pedido> pedidos) {
-        List<Pedido> pendientes = new ArrayList<>();
+    public ArrayList<Pedido> verPedidosPendientes(ArrayList<Pedido> pedidos) {
+        ArrayList<Pedido> pendientes = new ArrayList<>();
         for (Pedido p : pedidos) {
             if ("Pendiente".equals(p.getEstado())) {
                 pendientes.add(p);
@@ -136,7 +136,7 @@ public class Empleado {
         return pendientes;
     }
 
-    public boolean verificarEstadoPago(int idPago, List<Pago> pagos) {
+    public boolean verificarEstadoPago(int idPago, ArrayList<Pago> pagos) {
         for (Pago p : pagos) {
             if (p.getId() == idPago) {
                 return "Completado".equals(p.getEstado());
@@ -145,7 +145,7 @@ public class Empleado {
         return false;
     }
 
-    public Direccion consultarDireccionPedido(int idPedido, List<Pedido> pedidos) {
+    public Direccion consultarDireccionPedido(int idPedido, ArrayList<Pedido> pedidos) {
         for (Pedido p : pedidos) {
             if (p.getId() == idPedido) {
                 return p.getDireccion();
@@ -159,4 +159,3 @@ public class Empleado {
         return "Empleado{id=" + id + ", nombre='" + nombre + "', usuario='" + usuario + "'}";
     }
 }
-

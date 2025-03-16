@@ -35,12 +35,18 @@ public class Admin extends Empleado {
         return empleado;
     }
 
-    public void eliminarCuentaEmpleado(int idEmpleado, List<Empleado> empleados) {
+    public void eliminarCuentaEmpleado(int idEmpleado, ArrayList<Empleado> empleados) {
         empleados.removeIf(e -> e.getId() == idEmpleado);
     }
 
-    public void editarInformacionEmpleado(int idEmpleado, String nuevosDatos) {
+    public void editarInformacionEmpleado(int idEmpleado, ArrayList<Empleado> empleados, String nuevoNombre, String nuevoUsuario, String nuevoPassword) {
         // Actualiza datos de un empleado
+        for (Empleado e : empleados){
+            if (e.getId() == idEmpleado){
+                e.setNombre(nuevoNombre);
+                e.setUsuario(nuevoUsuario);
+            }
+        }
     }
 
     public int consultarCantidadPedidos(List<Pedido> pedidos) {
