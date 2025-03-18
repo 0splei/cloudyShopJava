@@ -22,7 +22,7 @@ Para instalar y ejecutar este proyecto, sigue estos pasos:
 1. **Clona el repositorio**: 
 Tambien puedes descargarlo y reproducirlo desde una carpeta. 
    ```bash
-   git clone (https://github.com/ChrisM2309/cloudyShopJava.git)
+   git clone https://github.com/ChrisM2309/cloudyShopJava.git
    ```
 
 2. **Navega al directorio del proyecto**:
