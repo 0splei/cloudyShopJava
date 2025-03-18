@@ -15,6 +15,36 @@ El sistema simula las operaciones básicas de un comercio electrónico, incluyen
 - **Gestión de pedidos**: Creación, actualización y cancelación de pedidos, con manejo de direcciones y pagos.
 - **Interfaz de consola**: Interacción a través de menús organizados por roles.
 
+## Instalación
+
+Para instalar y ejecutar este proyecto, sigue estos pasos:
+
+1. **Clona el repositorio**: 
+Tambien puedes descargarlo y reproducirlo desde una carpeta. 
+   ```bash
+   git clone (https://github.com/ChrisM2309/cloudyShopJava.git)
+   ```
+
+2. **Navega al directorio del proyecto**:
+Usa la carpeta correcta, cloudyShopJava
+   ```bash
+   cd cloudyShopJava
+   ```
+
+3. **Compila el código**:
+   ```bash
+   javac Main.java
+   ```
+
+4. **Ejecuta el programa**:
+   ```bash
+   java Main.java
+   ```
+
+### Requisitos
+- Java Development Kit (JDK) 8 o superior.
+- Git (para clonar el repositorio).
+
 ## Uso
 
 Al iniciar el programa, se presenta un menú principal con las siguientes opciones:
